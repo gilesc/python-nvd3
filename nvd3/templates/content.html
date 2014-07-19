@@ -128,6 +128,11 @@ $(function(){
         {# include specific subchart #}
         {{ chart.jschart }}
 
+		{# extra chart attributes #}
+		{% if chart.extras %}
+			{{ chart.extras }}
+		{% endif %}
+
         {# Inject data to D3 #}
         d3.select('#{{ chart.name }} svg')
             .datum(datum)
@@ -139,10 +144,6 @@ $(function(){
             .attr('height', {{ chart.height}})
             {% endif %}
             .call(chart);
-		{# extra chart attributes #}
-		{% if chart.extras %}
-			{{ chart.extras }}
-		{% endif %}
     {# closing nv.addGraph #}
     });
 
